@@ -6,11 +6,12 @@ const app = next({dev});
 const handle = app.getRequestHandler();
 const port = process.env.PORT || 8080;
 const compression = require('compression');
-const DEV_API_HOST = 'http://localhost:8080';
-
+const API_HOST_LOCAL = 'http://localhost:8080';
+const API_HOST_DOCKER = 'http://shoe-service:8080';
+const API_HOST = dev ? API_HOST_LOCAL : API_HOST_DOCKER;
 const devProxy = {
     '/api': {
-        target: DEV_API_HOST,
+        target: API_HOST,
         pathRewrite: {'^/api': ''},
         changeOrigin: true
     }
@@ -22,12 +23,10 @@ app
         const server = express();
         server.use(compression());
 
-        if (dev && devProxy) {
-            const proxyMiddleware = require('http-proxy-middleware');
-            Object.keys(devProxy).forEach(function (context) {
-                server.use(proxyMiddleware(context, devProxy[context]))
-            })
-        }
+        const proxyMiddleware = require('http-proxy-middleware');
+        Object.keys(devProxy).forEach(function (context) {
+            server.use(proxyMiddleware(context, devProxy[context]))
+        });
 
         server.get('*', (req, res) => {
             return handle(req, res)

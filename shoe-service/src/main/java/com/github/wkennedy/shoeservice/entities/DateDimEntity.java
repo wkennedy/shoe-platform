@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.util.Collection;
 
 @Entity
-@Table(name = "date_dim", catalog = "shoe_db")
+@Table(name = "date_dim")
 public class DateDimEntity {
     private int dateDimId;
     private Date dateActual;

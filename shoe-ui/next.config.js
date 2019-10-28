@@ -1,4 +1,3 @@
 module.exports = {
-    crossOrigin: 'anonymous',
-    apiHost: 'http://localhost:8080'
+    crossOrigin: 'anonymous'
 };

@@ -3,7 +3,7 @@ package com.github.wkennedy.shoeservice.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "true_to_size_fact", catalog = "shoe_db")
+@Table(name = "true_to_size_fact")
 public class TrueToSizeFactEntity {
     private int id;
     private short trueToSize;

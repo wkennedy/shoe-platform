@@ -31,7 +31,8 @@ class TrueToSize extends Component {
             model: '',
             modelOptions: [],
             trueToState: '',
-            success: ''
+            success: '',
+            trueToSizeError: false
         };
 
         this.state.brandOptions.length = 0;
@@ -50,8 +51,6 @@ class TrueToSize extends Component {
 
     buildModelOptions() {
         return Object.entries(this.props.brandModels).map(([brand, models], i) => {
-            console.log("model: " + models);
-            console.log("brand: " + this.state.brand + ":::" + brand);
 
             if (brand === this.state.brand) {
                 models.forEach(model => {
@@ -72,6 +71,7 @@ class TrueToSize extends Component {
     };
 
     handleBrandInputChange = (inputValue, actionMeta) => {
+        this.clearSuccessMessage();
         this.state.modelOptions.length = 0;
         this.buildModelOptions();
     };
@@ -83,12 +83,23 @@ class TrueToSize extends Component {
     };
 
     handleModelInputChange = (inputValue, actionMeta) => {
-
+        this.clearSuccessMessage();
     };
 
     handleTrueToSizeChange(event) {
         const target = event.target;
         const value = target.value;
+        this.clearSuccessMessage();
+        if(value > 5 || value < 1) {
+            this.setState({
+                ['trueToSizeError']: true
+            })
+        } else {
+            this.setState({
+                ['trueToSizeError']: false
+            })
+        }
+
         if (value) {
             this.setState({
                 ['trueToSize']: value
@@ -96,14 +107,15 @@ class TrueToSize extends Component {
         }
     }
 
-    close() {
-        this.state.open = false;
+    clearSuccessMessage() {
+        this.setState({
+            ['success']: ''
+        })
     }
 
     handleSubmit(event) {
         let url = this.props.baseUrl + "/api/shoes/" + this.state.brand + "/" + this.state.model + "/" + this.state.trueToSize; //{brand}/{model}/{trueToSize}
 
-        console.log("url:" + url);
         fetch(url, {method: 'POST'})
             .then((response) => response.json())
             .then((responseJson) => {
@@ -195,6 +207,7 @@ class TrueToSize extends Component {
                             fullWidth
                             onChange={this.handleTrueToSizeChange}
                             margin="normal"
+                            error={this.state.trueToSizeError === true }
                             InputLabelProps={{
                                 shrink: true,
                             }}
@@ -232,6 +245,5 @@ TrueToSize.getInitialProps = async function ({req}) {
         baseUrl, brandModels
     }
 };
-
 
 export default withStyles(styles)(TrueToSize);

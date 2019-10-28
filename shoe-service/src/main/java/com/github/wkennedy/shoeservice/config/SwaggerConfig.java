@@ -32,7 +32,7 @@ public class SwaggerConfig {
                 "Shoe service to manage shoe true to size values",
                 "1.0",
                 null,
-                new Contact("Will Kennedy", "https://github.com/wkennedy/shoe-service", "will.n.kennedy@gmail.com"),
+                new Contact("Will Kennedy", "https://github.com/wkennedy/shoe-platform", "will.n.kennedy@gmail.com"),
                 null, null, Collections.emptyList());
     }
 }

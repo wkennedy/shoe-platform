@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.math.BigInteger;
 
 @Entity
-@Table(name = "shoe_size_dim", catalog = "shoe_db")
+@Table(name = "shoe_size_dim")
 public class ShoeSizeDimEntity {
     private int id;
     private Sex sex;

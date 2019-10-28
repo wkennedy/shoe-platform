@@ -4,6 +4,7 @@ import Container from "@material-ui/core/Container";
 import React, {Component} from "react";
 import MaterialTable from "material-table";
 import fetch from 'isomorphic-unfetch'
+import {apiHost} from "../config";
 
 const styles = theme => ({
     root: {
@@ -24,20 +25,21 @@ class Home extends Component {
     render() {
 
         return (
-            <Container maxWidth="sm">
+            <Container maxWidth="md">
                 <Grid container spacing={8}>
                     <Grid item xs={12}>
                         <MaterialTable
                             columns={[
                                 {title: "Brand", field: "brand"},
                                 {title: "Model", field: "model"},
-                                {title: "True To Size", field: "trueToSizeAvg"}]}
+                                {title: "True To Size", field: "trueToSizeAvg"},
+                                {title: "Description", field: "trueToSizeDescription"}]}
                             data={this.props.trueToSizeAverages}
                             options={{
                                 sorting: true,
                                 grouping: true
                             }}
-                            title="True To Size Values"
+                            title="True To Size Values - 3 is perfectly true to size"
                         />
                     </Grid>
                 </Grid>
@@ -47,14 +49,12 @@ class Home extends Component {
 }
 
 Home.getInitialProps = async function ({req}) {
-    const baseUrl = req ? `${req.protocol}://${req.get('Host')}` : '';
-    const trueToSizeAveragesResponse = await fetch(baseUrl + "/api/shoes/trueToSizeAverages");
+    const trueToSizeAveragesResponse = await fetch(apiHost(req) + "/api/shoes/trueToSizeAverages");
     const trueToSizeAverages = await trueToSizeAveragesResponse.json();
 
     return {
         trueToSizeAverages
     }
 };
-
 
 export default withStyles(styles)(Home);

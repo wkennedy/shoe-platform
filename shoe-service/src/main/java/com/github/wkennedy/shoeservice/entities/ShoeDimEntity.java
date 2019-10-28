@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "shoe_dim", catalog = "shoe_db")
+@Table(name = "shoe_dim")
 public class ShoeDimEntity implements Serializable {
     private int id;
     private String brand;

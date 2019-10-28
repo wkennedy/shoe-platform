@@ -8,14 +8,16 @@ import Typography from "@material-ui/core/Typography";
 import MenuIcon from '@material-ui/icons/Menu';
 import Drawer from "@material-ui/core/Drawer";
 import HomeIcon from '@material-ui/icons/Home';
+import AddIcon from '@material-ui/icons/Add';
 import InfoIcon from '@material-ui/icons/Info';
+import CloudIcon from '@material-ui/icons/Cloud';
+import LocalHospitalIcon from '@material-ui/icons/LocalHospital';
 import Link from "next/link";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import CompareIcon from "@material-ui/icons/Compare";
-import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import {API_HOST_LOCAL} from "../config";
 
 const styles = theme => ({
     root: {
@@ -73,12 +75,16 @@ class Header extends Component {
                         <Link href={'/'}><a><ListItemText primary='Home'/></a></Link>
                     </ListItem>
                     <ListItem button key='trueToSize'>
-                        <ListItemIcon>{<CompareIcon/>}</ListItemIcon>
+                        <ListItemIcon>{<AddIcon/>}</ListItemIcon>
                         <Link href={'/trueToSize'}><a><ListItemText primary='True to Size Fit'/></a></Link>
                     </ListItem>
                     <ListItem button key='api'>
-                        <ListItemIcon>{<CheckCircleIcon/>}</ListItemIcon>
-                        <a href={'http://localhost:8080/swagger-ui.html'} target="_blank"><ListItemText primary='API'/></a>
+                        <ListItemIcon>{<CloudIcon/>}</ListItemIcon>
+                        <a href={API_HOST_LOCAL + '/swagger-ui.html'} target="_blank"><ListItemText primary='API'/></a>
+                    </ListItem>
+                    <ListItem button key='monitoring'>
+                        <ListItemIcon>{<LocalHospitalIcon/>}</ListItemIcon>
+                        <a href={API_HOST_LOCAL} target="_blank"><ListItemText primary='Monitoring'/></a>
                     </ListItem>
                     <ListItem button key='about'>
                         <ListItemIcon>{<InfoIcon/>}</ListItemIcon>

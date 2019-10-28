@@ -23,7 +23,7 @@ class About extends Component {
                     title="What is it"
                 />
                 <CardContent>
-                  content
+                  Shoe Services is a micro-service to allow users to input true to size values for specific shoe brands and models. This allows consumers to know whether or not their favorite footware runs big or small.
                 </CardContent>
               </Card>
             </Grid>
@@ -35,12 +35,11 @@ class About extends Component {
                 <CardContent>
                   <ul>
                     <li>
-                      Front-End - Javascript / React / NextJS / Material
+                      Front-End - Node.js / Javascript / React / NextJS / Material UI
                     </li>
                     <li>
-                      Back-End - Java / Spring-Boot / Spring-Data
+                      Back-End - Java / Spring-Boot / Spring-Web / Spring-Data / FlyWay / Postgres
                     </li>
-
                   </ul>
                 </CardContent>
               </Card>

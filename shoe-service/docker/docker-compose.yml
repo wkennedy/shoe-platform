@@ -1,26 +1,56 @@
 version: "3"
 services:
-  #  Create a service named db.
-  db:
-    #   Use the Docker Image postgres. This will pull the newest release.
+  postgres:
     image: "postgres"
-    #   Give the container the name my_postgres. You can changes to something else.
-    container_name: "my_postgres"
-    #   Setup the username, password, and database name. You can changes these values.
+    container_name: "postgres"
+    networks:
+      - postgres
     environment:
       - POSTGRES_USER=shoe_dba
       - POSTGRES_PASSWORD=shoe1234
       - POSTGRES_DB=shoe_db
-    #   Maps port 54320 (localhost) to port 5432 on the container. You can change the ports to fix your needs.
+    expose:
+      - 5432
     ports:
-      - "54320:5432"
-    #   Set a volume some that database is not lost after shutting down the container.
-    #   I used the name postgres-data but you can changed it to something else.
-#    volumes:
-#      - ./postgres-data:/var/lib/postgresql/data
+      - "5432:5432"
 
-  redis:
-    image: redis
-    container_name: redis-cache
+  pgadmin4:
+    image: dpage/pgadmin4
+    networks:
+      - postgres
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@shoe-service.com
+      PGADMIN_DEFAULT_PASSWORD: admin
     ports:
-      - "6379:6379"
+      - 5433:80
+    depends_on:
+      - postgres
+
+  shoe-service:
+    image: "waggins/shoe-service"
+    networks:
+      - postgres
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    links:
+      - postgres
+    depends_on:
+      - postgres
+
+  shoe-ui:
+    image: "waggins/shoe-ui"
+    networks:
+      - postgres
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    links:
+      - shoe-service
+    depends_on:
+      - shoe-service
+
+networks:
+  postgres:
+    driver: bridge
+
