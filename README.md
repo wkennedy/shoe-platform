@@ -36,7 +36,7 @@ From here you can build your own docker images. In the shoe-platform/shoe-servic
      docker build -t <YOUR PREFIX>/shoe-service .
      
 ####shoe-UI
-You don't have to build the UI in order to run it. From the shoe-platform/shoe-ui directory you can execute:
+In order to use the UI you need NodeJS installed (https://nodejs.org/en/download/). You don't have to build the UI in order to run it. From the shoe-platform/shoe-ui directory you can execute:
 
     npm run dev
 
