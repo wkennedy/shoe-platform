@@ -7,6 +7,8 @@ import com.github.wkennedy.shoeservice.models.Shoe;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.lang.Nullable;
 
+import java.util.List;
+
 public interface ShoeService {
 
     ShoeSizeDimEntity findBySizeUS(Float size);
@@ -14,4 +16,6 @@ public interface ShoeService {
     Boolean createTrueToSizeFact(String brand, String model, Short trueToSize, @Nullable Float size);
 
     Shoe getTrueToSizeAverage(String brand, String model);
+
+    List<Shoe> getTrueToSizeAverages();
 }

@@ -12,7 +12,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class ShoeServiceImpl implements ShoeService {
@@ -65,8 +67,12 @@ public class ShoeServiceImpl implements ShoeService {
         return getTrueToSizeAverage(brand, model, null);
     }
 
+    public List<Shoe> getTrueToSizeAverages() {
+        return trueToSizeFactRepo.findTrueToSizeAverages();
+    }
+
     public Shoe getTrueToSizeAverage(String brand, String model, Float size) {
-        Float trueToSizeAverage;
+        Double trueToSizeAverage;
         if(size != null) {
             trueToSizeAverage = trueToSizeFactRepo.findTrueToSizeAverage(brand.toLowerCase(), model.toLowerCase());//TODO
         } else {

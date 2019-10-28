@@ -31,6 +31,11 @@ public class ShoeController {
         return shoeService.createTrueToSizeFact(brand, model, trueToSize, null);
     }
 
+    @GetMapping("/trueToSizeAverages")
+    private List<Shoe> getTrueToSizeAverages() {
+        return shoeService.getTrueToSizeAverages();
+    }
+
     @GetMapping("/brandModels")
     private Map<String, List<String>> getBrandModels() {
         return shoeDimService.getBrandModels();

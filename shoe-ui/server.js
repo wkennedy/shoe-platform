@@ -6,34 +6,32 @@ const app = next({dev});
 const handle = app.getRequestHandler();
 const port = process.env.PORT || 8080;
 const compression = require('compression');
-// const cors = require('cors');
-const proxy = require('http-proxy-middleware');
+const DEV_API_HOST = 'http://localhost:8080';
+
+const devProxy = {
+    '/api': {
+        target: DEV_API_HOST,
+        pathRewrite: {'^/api': ''},
+        changeOrigin: true
+    }
+};
 
 app
     .prepare()
     .then(() => {
         const server = express();
         server.use(compression());
-        // server.use(cors());
-        // server.options('*', cors());
-        // server.use(function(req, res, next) {
-        //     res.header("Access-Control-Allow-Origin", "*"); // allow requests from any other server
-        //     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE'); // allow these verbs
-            // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Cache-Control");
-        // });
 
-        // server.use(
-        //     '/api',
-        //     proxy({ target: 'http://localhost:8080'})
-        // );
+        if (dev && devProxy) {
+            const proxyMiddleware = require('http-proxy-middleware');
+            Object.keys(devProxy).forEach(function (context) {
+                server.use(proxyMiddleware(context, devProxy[context]))
+            })
+        }
 
         server.get('*', (req, res) => {
             return handle(req, res)
         });
-
-        // server.get('*', (req, res, next) => {
-        //     return handle(req, res, next)
-        // });
 
         server.listen(port, err => {
             if (err) throw err;

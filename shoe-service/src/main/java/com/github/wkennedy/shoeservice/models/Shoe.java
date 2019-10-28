@@ -5,8 +5,17 @@ import java.util.Objects;
 public class Shoe {
     private String brand;
     private String model;
-    private Float trueToSizeAvg;
+    private Double trueToSizeAvg;
     private String trueToSizeDescription;
+
+    public Shoe() {
+    }
+
+    public Shoe(String brand, String model, Double trueToSizeAvg) {
+        this.brand = brand;
+        this.model = model;
+        this.trueToSizeAvg = trueToSizeAvg;
+    }
 
     public String getBrand() {
         return brand;
@@ -24,11 +33,11 @@ public class Shoe {
         this.model = model;
     }
 
-    public Float getTrueToSizeAvg() {
+    public Double getTrueToSizeAvg() {
         return trueToSizeAvg;
     }
 
-    public void setTrueToSizeAvg(Float trueToSizeAvg) {
+    public void setTrueToSizeAvg(Double trueToSizeAvg) {
         this.trueToSizeAvg = trueToSizeAvg;
     }
 

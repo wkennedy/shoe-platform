@@ -2,6 +2,7 @@ package com.github.wkennedy.shoeservice.services;
 
 import com.github.wkennedy.shoeservice.entities.ShoeDimEntity;
 import com.github.wkennedy.shoeservice.repos.ShoeDimRepo;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +29,6 @@ public class ShoeDimServiceImpl implements ShoeDimService {
     }
 
     @Override
-    @Cacheable("ShoeDimBrandModelCache")
     public ShoeDimEntity findByBrandAndModel(String brand, String model) {
         if(brand == null || model == null) {
             return null;

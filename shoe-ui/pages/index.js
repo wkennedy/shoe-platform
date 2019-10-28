@@ -1,35 +1,60 @@
-import React from 'react';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import MuiLink from '@material-ui/core/Link';
-import Link from '../src/Link';
+import Grid from "@material-ui/core/Grid";
+import {withStyles} from "@material-ui/core";
+import Container from "@material-ui/core/Container";
+import React, {Component} from "react";
+import MaterialTable from "material-table";
+import fetch from 'isomorphic-unfetch'
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MuiLink color="inherit" href="https://material-ui.com/">
-        Your Website
-      </MuiLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
+const styles = theme => ({
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    formControl: {
+        minWidth: 120,
+    }
+});
+
+class Home extends Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+
+        return (
+            <Container maxWidth="sm">
+                <Grid container spacing={8}>
+                    <Grid item xs={12}>
+                        <MaterialTable
+                            columns={[
+                                {title: "Brand", field: "brand"},
+                                {title: "Model", field: "model"},
+                                {title: "True To Size", field: "trueToSizeAvg"}]}
+                            data={this.props.trueToSizeAverages}
+                            options={{
+                                sorting: true,
+                                grouping: true
+                            }}
+                            title="True To Size Values"
+                        />
+                    </Grid>
+                </Grid>
+            </Container>
+        )
+    }
 }
 
-export default function Index() {
-  return (
-    <Container maxWidth="sm">
-      <Box my={4}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Next.js example
-        </Typography>
-        <Link href="/about" color="secondary">
-          Go to the about page
-        </Link>
-        <Copyright />
-      </Box>
-    </Container>
-  );
-}
+Home.getInitialProps = async function ({req}) {
+    const baseUrl = req ? `${req.protocol}://${req.get('Host')}` : '';
+    const trueToSizeAveragesResponse = await fetch(baseUrl + "/api/shoes/trueToSizeAverages");
+    const trueToSizeAverages = await trueToSizeAveragesResponse.json();
+
+    return {
+        trueToSizeAverages
+    }
+};
+
+
+export default withStyles(styles)(Home);

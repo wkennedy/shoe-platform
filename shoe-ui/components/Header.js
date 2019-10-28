@@ -14,13 +14,13 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import CreateIcon from "@material-ui/icons/Create";
 import CompareIcon from "@material-ui/icons/Compare";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 
 const styles = theme => ({
     root: {
         width: '100%',
+        paddingBottom: 20
     },
     flex: {
         flex: 1,
@@ -72,17 +72,13 @@ class Header extends Component {
                         <ListItemIcon>{<HomeIcon/>}</ListItemIcon>
                         <Link href={'/'}><a><ListItemText primary='Home'/></a></Link>
                     </ListItem>
-                    <ListItem button key='create'>
-                        <ListItemIcon>{<CreateIcon/>}</ListItemIcon>
-                        <Link href={'/create'}><a><ListItemText primary='Create'/></a></Link>
-                    </ListItem>
                     <ListItem button key='trueToSize'>
                         <ListItemIcon>{<CompareIcon/>}</ListItemIcon>
                         <Link href={'/trueToSize'}><a><ListItemText primary='True to Size Fit'/></a></Link>
                     </ListItem>
                     <ListItem button key='api'>
                         <ListItemIcon>{<CheckCircleIcon/>}</ListItemIcon>
-                        <a href={'http://localhost:8080/swagger-ui.html'}><ListItemText primary='API'/></a>
+                        <a href={'http://localhost:8080/swagger-ui.html'} target="_blank"><ListItemText primary='API'/></a>
                     </ListItem>
                     <ListItem button key='about'>
                         <ListItemIcon>{<InfoIcon/>}</ListItemIcon>
