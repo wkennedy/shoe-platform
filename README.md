@@ -61,7 +61,7 @@ Once that's done you can run:
 
 and then navigate to http://localhost:3000 in your browser.
 
-##Useful Endpoints
+## Useful Endpoints
 
 http://localhost:8080
 
