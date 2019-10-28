@@ -23,7 +23,7 @@ NOTE: If you have trouble
 ## How to build
 
 #### shoe-service
-In order to build the shoe-service you need Java 8 or above installed and Maven. In the shoe-service root (shoe-platform/shoe-service) execute:
+In order to build the shoe-service you need Java 8 (and set JAVA_HOME) or above installed and Maven. In the shoe-service root (shoe-platform/shoe-service) execute:
 
     mvn install
 
