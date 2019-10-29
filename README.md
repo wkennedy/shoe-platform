@@ -18,7 +18,7 @@ Then from shoe-platform/docker run:
 
 Once everything is up and running you can navigate to http://localhost:3000 and see the service interface.
 
-NOTE: If you have trouble
+NOTE: If you have trouble with ports due to applications on your machine already utilizing those ports, please edit the ports in the docker-compose.yml file appropriately.
 
 ## How to build
 
