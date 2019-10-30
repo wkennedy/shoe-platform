@@ -27,7 +27,7 @@ services:
       - postgres
 
   shoe-service:
-    image: "waggins/shoe-service"
+    image: "waggins/shoe-service:v2"
     networks:
       - postgres
     ports:
@@ -39,7 +39,7 @@ services:
       - postgres
 
   shoe-ui:
-    image: "waggins/shoe-ui"
+    image: "waggins/shoe-ui:v2"
     networks:
       - postgres
     ports:
