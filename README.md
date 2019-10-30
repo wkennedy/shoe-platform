@@ -63,7 +63,7 @@ and then navigate to http://localhost:3000 in your browser.
 
 ## Useful Endpoints
 
-http://localhost:8080
+http://localhost:8080/admin
 
 This will show you basic monitoring and configuration of the shoe-service.
 
