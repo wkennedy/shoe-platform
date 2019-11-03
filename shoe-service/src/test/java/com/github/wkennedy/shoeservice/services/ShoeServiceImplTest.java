@@ -5,20 +5,24 @@ import com.github.wkennedy.shoeservice.models.Shoe;
 import com.github.wkennedy.shoeservice.repos.DateDimRepo;
 import com.github.wkennedy.shoeservice.repos.ShoeDimRepo;
 import com.github.wkennedy.shoeservice.repos.TrueToSizeFactRepo;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.aspectj.lang.annotation.Before;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class ShoeServiceImplTest {
 
@@ -36,7 +40,7 @@ public class ShoeServiceImplTest {
 
     private DateDimEntity dateDimEntity;
 
-    @Before
+    @BeforeEach
     public void before() {
         if(dateDimEntity == null) {
             dateDimEntity = new DateDimEntity();
@@ -44,6 +48,10 @@ public class ShoeServiceImplTest {
             dateDimRepo.save(dateDimEntity);
         }
 
+    }
+
+    @AfterEach
+    public void afterEach() {
         trueToSizeFactRepo.deleteAll();
         shoeDimRepo.deleteAll();
     }

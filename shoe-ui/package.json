@@ -8,22 +8,24 @@
     "start": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 PORT=3000 NODE_ENV=production node server.js"
   },
   "dependencies": {
-    "next": "latest",
-    "react": "16.11.0",
-    "react-dom": "16.11.0",
-    "express": "^4.17.1",
     "@material-ui/core": "4.1.1",
     "@material-ui/icons": "4.2.0",
     "@material-ui/styles": "4.1.1",
-    "cross-env": "^5.2.0",
     "clsx": "latest",
     "compression": "^1.7.4",
-    "isomorphic-unfetch": "^3.0.0",
-    "prop-types": "^15.7.2",
-    "react-jss": "^8.6.1",
-    "styled-jsx": "^3.2.1",
+    "cross-env": "^5.2.0",
+    "express": "^4.17.1",
     "http-proxy-middleware": "latest",
+    "isomorphic-unfetch": "^3.0.0",
     "material-table": "latest",
-    "react-select": "latest"
+    "next": "latest",
+    "passport-local": "^1.0.0",
+    "prop-types": "^15.7.2",
+    "react": "16.11.0",
+    "react-dom": "16.11.0",
+    "react-jss": "^8.6.1",
+    "react-select": "latest",
+    "styled-jsx": "^3.2.1",
+    "client-oauth2": "latest"
   }
 }

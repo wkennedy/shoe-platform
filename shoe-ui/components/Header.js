@@ -17,7 +17,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import {API_HOST_LOCAL} from "../config";
+import {API_HOST_LOCAL, MONITOR_HOST_LOCAL} from "../config";
 
 const styles = theme => ({
     root: {
@@ -84,7 +84,7 @@ class Header extends Component {
                     </ListItem>
                     <ListItem button key='monitoring'>
                         <ListItemIcon>{<LocalHospitalIcon/>}</ListItemIcon>
-                        <a href={API_HOST_LOCAL + "/admin"} target="_blank"><ListItemText primary='Monitoring'/></a>
+                        <a href={MONITOR_HOST_LOCAL + "/admin"} target="_blank"><ListItemText primary='Monitoring'/></a>
                     </ListItem>
                     <ListItem button key='about'>
                         <ListItemIcon>{<InfoIcon/>}</ListItemIcon>
