@@ -1,12 +1,10 @@
 package com.github.wkennedy.shoeservice.services;
 
-import com.github.wkennedy.shoeservice.entities.DateDimEntity;
 import com.github.wkennedy.shoeservice.entities.ShoeDimEntity;
 import com.github.wkennedy.shoeservice.entities.ShoeSizeDimEntity;
 import com.github.wkennedy.shoeservice.entities.TrueToSizeFactEntity;
 import com.github.wkennedy.shoeservice.models.Shoe;
 import com.github.wkennedy.shoeservice.models.TrueToSize;
-import com.github.wkennedy.shoeservice.repos.DateDimRepo;
 import com.github.wkennedy.shoeservice.repos.ShoeSizeDimRepo;
 import com.github.wkennedy.shoeservice.repos.TrueToSizeFactRepo;
 import org.slf4j.Logger;
@@ -14,9 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -24,7 +19,7 @@ public class ShoeServiceImpl implements ShoeService {
 
     private static final Logger LOG = LoggerFactory.getLogger(ShoeServiceImpl.class);
 
-    private final DateDimRepo dateDimRepo;
+    private final DateDimService dateDimService;
 
     private final ShoeDimService shoeDimService;
 
@@ -32,8 +27,8 @@ public class ShoeServiceImpl implements ShoeService {
 
     private final TrueToSizeFactRepo trueToSizeFactRepo;
 
-    public ShoeServiceImpl(DateDimRepo dateDimRepo, ShoeDimService shoeDimService, ShoeSizeDimRepo shoeSizeDimRepo, TrueToSizeFactRepo trueToSizeFactRepo) {
-        this.dateDimRepo = dateDimRepo;
+    public ShoeServiceImpl(DateDimService dateDimService, ShoeDimService shoeDimService, ShoeSizeDimRepo shoeSizeDimRepo, TrueToSizeFactRepo trueToSizeFactRepo) {
+        this.dateDimService = dateDimService;
         this.shoeDimService = shoeDimService;
         this.shoeSizeDimRepo = shoeSizeDimRepo;
         this.trueToSizeFactRepo = trueToSizeFactRepo;
@@ -49,13 +44,14 @@ public class ShoeServiceImpl implements ShoeService {
         TrueToSizeFactEntity trueToSizeFactEntity = new TrueToSizeFactEntity();
         ShoeDimEntity shoeDimEntity = shoeDimService.findByBrandAndModel(brand, model);
         if (shoeDimEntity == null) {
+            LOG.debug("Existing ShoeDimEntity not found creating new ShoeDimension");
             shoeDimEntity = shoeDimService.createShoeDimension(brand, model);
         }
 
         trueToSizeFactEntity.setTrueToSize(trueToSize);
         trueToSizeFactEntity.setShoeDimByShoeDim(shoeDimEntity);
 
-        trueToSizeFactEntity.setDateDimByDateDim(getDateDimByToday());
+        trueToSizeFactEntity.setDateDimByDateDim(dateDimService.getDateDimByToday());
 
         if (size != null) {
             ShoeSizeDimEntity bySizeUS = findBySizeUS(size);
@@ -87,16 +83,5 @@ public class ShoeServiceImpl implements ShoeService {
         }
 
         return trueToSizeAverages;
-    }
-
-    private DateDimEntity getDateDimByToday() {
-        Integer dateDimId = getDateDimIDForToday();
-        LOG.debug("Getting dateDim for dateDimId: " + dateDimId);
-        return dateDimRepo.findById(dateDimId).get();
-    }
-
-    private Integer getDateDimIDForToday() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-        return Integer.parseInt(sdf.format(new Date()));
     }
 }

@@ -26,6 +26,16 @@ services:
     depends_on:
       - postgres
 
+  redis:
+    image: "redis:alpine"
+    container_name: "redis"
+    networks:
+      - postgres
+    expose:
+      - 6379
+    ports:
+      - "6379:6379"
+
   spring-boot-admin-server:
     image: "waggins/spring-boot-admin-server:v1"
     networks:
@@ -43,7 +53,7 @@ services:
     restart: unless-stopped
 
   shoe-service:
-    image: "waggins/shoe-service:v3"
+    image: "waggins/shoe-service:v4"
     networks:
       - postgres
     ports:
@@ -53,10 +63,12 @@ services:
       - postgres
       - spring-boot-admin-server
       - authorization-server
+      - redis
     depends_on:
       - postgres
       - spring-boot-admin-server
       - authorization-server
+      - redis
 
   shoe-ui:
     image: "waggins/shoe-ui:v3"

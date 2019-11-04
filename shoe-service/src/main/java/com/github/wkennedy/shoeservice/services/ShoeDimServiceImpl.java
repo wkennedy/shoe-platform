@@ -2,6 +2,7 @@ package com.github.wkennedy.shoeservice.services;
 
 import com.github.wkennedy.shoeservice.entities.ShoeDimEntity;
 import com.github.wkennedy.shoeservice.repos.ShoeDimRepo;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ public class ShoeDimServiceImpl implements ShoeDimService {
     }
 
     @Override
+    @CachePut(value = "shoeDimCache", key = "{#brand.toLowerCase().concat(#model.toLowerCase())}")
     public ShoeDimEntity createShoeDimension(String brand, String model) {
         ShoeDimEntity shoeDimEntity = new ShoeDimEntity();
         shoeDimEntity.setBrand(brand.toLowerCase());
@@ -29,6 +31,7 @@ public class ShoeDimServiceImpl implements ShoeDimService {
     }
 
     @Override
+    @Cacheable(value = "shoeDimCache", key = "{#brand.toLowerCase().concat(#model.toLowerCase())}")
     public ShoeDimEntity findByBrandAndModel(String brand, String model) {
         if(brand == null || model == null) {
             return null;
