@@ -1,7 +1,9 @@
 # shoe-platform
 
 ## What is it?
-The shoe-platform consists of two services: shoe-service (Spring-Boot) and shoe-ui (NodeJS/React). The shoe-service is a RESTful API that consumes shoe brand and model information along with a true-to-size value and persists it to a database. These values can be retrieved as an average for each brand/model combination. The shoe-ui is a friendly web client that allows users to enter and view true to size data.
+The shoe-platform consists of two services: shoe-service (Spring-Boot) and shoe-ui (NodeJS/React). The shoe-service is a RESTful API that consumes shoe brand and model information along with a true-to-size value and persists it to a database. These values can be retrieved as an average for each brand/model combination. The shoe-ui is a friendly web client that allows users to enter and view true to size data. 
+
+Support services include an authorization-server and Spring-Boot-Admin-Server. The authorization-server supports OAuth2 grant types and returns a JWT to the requester and a JWKS endpoint for JWT verification. The Spring-Boot-Admin-Server provides monitoring and health information for the authorization-server as well as the shoe-service.
 
 #### Services Diagram
 
