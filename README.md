@@ -87,6 +87,8 @@ This is the swagger endpoint to display the API provided by the shoe-service. Be
       -d 'client_id=client&client_secret=secret&grant_type=client_credentials&scope=shoes'
     http://localhost:5433/browser/
 
+http://localhost:5433/browser/
+
 This is the PGAdmin 4 browser for Postgres, you can login to the admin console with:
 
     user: admin@shoe-service.com
