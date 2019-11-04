@@ -26,6 +26,7 @@
     "react-jss": "^8.6.1",
     "react-select": "latest",
     "styled-jsx": "^3.2.1",
-    "client-oauth2": "latest"
+    "client-oauth2": "latest",
+    "express-status-monitor": "latest"
   }
 }

@@ -71,7 +71,7 @@ services:
       - redis
 
   shoe-ui:
-    image: "waggins/shoe-ui:v3"
+    image: "waggins/shoe-ui:v4"
     networks:
       - postgres
     ports:

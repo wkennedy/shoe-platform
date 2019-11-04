@@ -56,6 +56,8 @@ app
             server.use(proxyMiddleware(context, devProxy[context]))
         });
 
+        server.use(require('express-status-monitor')());
+
         server.get('*', (req, res) => {
             return handle(req, res)
         });

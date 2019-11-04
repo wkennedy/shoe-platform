@@ -84,7 +84,11 @@ class Header extends Component {
                     </ListItem>
                     <ListItem button key='monitoring'>
                         <ListItemIcon>{<LocalHospitalIcon/>}</ListItemIcon>
-                        <a href={MONITOR_HOST_LOCAL + "/admin"} target="_blank"><ListItemText primary='Monitoring'/></a>
+                        <a href={MONITOR_HOST_LOCAL + "/admin"} target="_blank"><ListItemText primary='Platform Monitoring'/></a>
+                    </ListItem>
+                    <ListItem button key='ui_monitoring'>
+                        <ListItemIcon>{<LocalHospitalIcon/>}</ListItemIcon>
+                        <a href={"/status"} target="_blank"><ListItemText primary='UI Monitoring'/></a>
                     </ListItem>
                     <ListItem button key='about'>
                         <ListItemIcon>{<InfoIcon/>}</ListItemIcon>
