@@ -80,20 +80,12 @@ This is the swagger endpoint to display the API provided by the shoe-service. Be
     curl -X POST \
       http://localhost:8090/auth/oauth/token \
       -H 'Accept: */*' \
-      -H 'Accept-Encoding: gzip, deflate' \
       -H 'Authorization: Basic Y2xpZW50OnNlY3JldA==' \
-      -H 'Cache-Control: no-cache' \
-      -H 'Connection: keep-alive' \
-      -H 'Content-Length: 79' \
       -H 'Content-Type: application/x-www-form-urlencoded' \
-      -H 'Cookie: JSESSIONID=5B89D2DB49D3773D07595D91007992DC' \
       -H 'Host: localhost:8090' \
-      -H 'Postman-Token: 1b721e9f-bf6b-47c3-8b0d-1a9e1ba87996,29738da6-d3d4-4aa1-a323-5028f9b962c6' \
-      -H 'User-Agent: PostmanRuntime/7.19.0' \
       -H 'cache-control: no-cache' \
       -d 'client_id=client&client_secret=secret&grant_type=client_credentials&scope=shoes'
-
-http://localhost:5433/browser/
+    http://localhost:5433/browser/
 
 This is the PGAdmin 4 browser for Postgres, you can login to the admin console with:
 
