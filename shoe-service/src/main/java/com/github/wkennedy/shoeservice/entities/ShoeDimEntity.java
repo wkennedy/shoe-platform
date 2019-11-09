@@ -6,6 +6,8 @@ import java.io.Serializable;
 @Entity
 @Table(name = "shoe_dim")
 public class ShoeDimEntity implements Serializable {
+    private static final long serialVersionUID = 1351507016338806169L;
+
     private int id;
     private String brand;
     private String model;

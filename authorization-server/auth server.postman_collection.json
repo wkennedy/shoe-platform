@@ -1,0 +1,70 @@
+{
+	"info": {
+		"_postman_id": "0fe4ecf1-e192-4df3-81b7-f71a566debfa",
+		"name": "auth server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "authorization-server oauth/token",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "authorization-server jwks endpoint",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/auth/.well-known/jwks.json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"auth",
+						".well-known",
+						"jwks.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "shoe-service shoes/brandModels",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImF1dGgta2V5LWlkIn0.eyJzY29wZSI6WyJzaG9lcyJdLCJleHAiOjE1NzMwMDc0MzIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJqdGkiOiI2ODYzYzBkMi02OGJhLTQ5YmQtYmJkZS04NDFlNTY3YWQ0ZmMiLCJjbGllbnRfaWQiOiJjbGllbnQifQ.XOP-v05U3diyhuSIVoqbwgdb0b0bZOGnapPd7WpxZToLLdYM74xRQ4XcPFCpVLL0Y6thaO1l7NSpDEAImRcFeSaCStI6N9NnnSzdTmIWITti20iaYf13HpS_Z5XXLgrViL38-AEd89_Z0XgLLB_X7R1SXN-XUuTfI-HhLZojsgbRa7r_Nl6AiQf12kyJMGGfyUU3kqDjCnnuA1tH7CQ8SEqmYetrf1fk6thzInirGE-n3lJwWwxasBIaLp_UH56jie9aDdp93w3xQ8bQiaDJRxkLjvM4g8J1SGnu-YgSTPrGuPH2AlKboQ3CaOHKMFmrLpX_w209NBU_rGKs77wrsQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/shoes/brandModels",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"shoes",
+						"brandModels"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

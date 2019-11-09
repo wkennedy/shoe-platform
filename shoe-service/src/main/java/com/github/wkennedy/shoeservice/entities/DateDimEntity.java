@@ -1,12 +1,16 @@
 package com.github.wkennedy.shoeservice.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.Collection;
 
 @Entity
 @Table(name = "date_dim")
-public class DateDimEntity {
+public class DateDimEntity implements Serializable {
+
+    private static final long serialVersionUID = -833356651167195566L;
+
     private int dateDimId;
     private Date dateActual;
     private long epoch;

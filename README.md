@@ -1,7 +1,13 @@
 # shoe-platform
 
 ## What is it?
-The shoe-platform consists of two services: shoe-service (Spring-Boot) and shoe-ui (NodeJS/React). The shoe-service is a RESTful API that consumes shoe brand and model information along with a true-to-size value and persists it to a database. These values can be retrieved as an average for each brand/model combination. The shoe-ui is a friendly web client that allows users to enter and view true to size data.
+The shoe-platform consists of two services: shoe-service (Spring-Boot) and shoe-ui (NodeJS/React). The shoe-service is a RESTful API that consumes shoe brand and model information along with a true-to-size value and persists it to a database. These values can be retrieved as an average for each brand/model combination. The shoe-ui is a friendly web client that allows users to enter and view true to size data. 
+
+Support services include an authorization-server and Spring-Boot-Admin-Server. The authorization-server supports OAuth2 grant types and returns a JWT to the requester and a JWKS endpoint for JWT verification. The Spring-Boot-Admin-Server provides monitoring and health information for the authorization-server as well as the shoe-service.
+
+#### Services Diagram
+
+![Image](https://github.com/wkennedy/shoe-platform/blob/dev/images/shoe-platform-diagram.png)
 
 ## Quickstart
 First of all, you'll need to clone this project:
@@ -63,13 +69,23 @@ and then navigate to http://localhost:3000 in your browser.
 
 ## Useful Endpoints
 
-http://localhost:8080/admin
+http://localhost:8091/admin
 
 This will show you basic monitoring and configuration of the shoe-service.
 
 http://localhost:8080/swagger-ui.html
 
-This is the swagger endpoint to display the API provided by the shoe-service.
+This is the swagger endpoint to display the API provided by the shoe-service. Because the shoe-service is a protected resource, you must provide Swagger authorization with 'Bearer <token>'. Replace <token> with the access token provided by:
+    
+    curl -X POST \
+      http://localhost:8090/auth/oauth/token \
+      -H 'Accept: */*' \
+      -H 'Authorization: Basic Y2xpZW50OnNlY3JldA==' \
+      -H 'Content-Type: application/x-www-form-urlencoded' \
+      -H 'Host: localhost:8090' \
+      -H 'cache-control: no-cache' \
+      -d 'client_id=client&client_secret=secret&grant_type=client_credentials&scope=shoes'
+    http://localhost:5433/browser/
 
 http://localhost:5433/browser/
 
